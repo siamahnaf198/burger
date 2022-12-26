@@ -1,0 +1,62 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type SuccessInfo {
+  success: Boolean!
+  message: String!
+}
+
+type RegistrationInfo {
+  success: Boolean!
+  token: String!
+  expire: Float!
+  message: String!
+}
+
+type User {
+  id: Float!
+  firstName: String!
+  lastName: String!
+  isActive: Boolean!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  getUser: [User!]!
+}
+
+type Mutation {
+  createUser(userInput: UserInput!): SuccessInfo!
+  resendOtp(resendInput: ResendInput!): SuccessInfo!
+  verifyOtp(verifyInput: VerifyInput!): RegistrationInfo!
+  login(loginInput: LoginInput!): RegistrationInfo!
+  updateProfile: SuccessInfo!
+}
+
+input UserInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+}
+
+input ResendInput {
+  email: String!
+}
+
+input VerifyInput {
+  email: String!
+  otp: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
